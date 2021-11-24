@@ -6,7 +6,8 @@ and open the template in the editor.
 -->
 <?php
 $pjs = $_REQUEST['pjs'];
-$pessoasJBD = $_REQUEST['pjsBD']
+$pessoasJBD = $_REQUEST['pjsBD'];
+$pjsdb = new cPessoaJ();
 ?>
 <html>
     <head>
@@ -51,6 +52,18 @@ $pessoasJBD = $_REQUEST['pjsBD']
                         <td><?php echo $pj['nome']; ?></td>
                         <td><?php echo $pj['cnpj']; ?></td>
                         <td><?php echo $pj['nomeFantasia']; ?></td>
+                        
+                       <td>
+                            <form action="editPessoaJ.php" method="POST">
+                                <input type="hidden" name="id" value="<?php echo $pj['idPessoa']; ?> " />
+                                <input type="submit" name="editarPJ" value="Editar"/>
+                            </form>
+                            <form action="<?php $pjsdb->deletePJ(); ?>" method="POST">
+                                <input type="hidden" name="id" value="<?php echo $pj['idPessoa']; ?> " />
+                                <input type="submit" name="deletePJ" value="Deletar"/>
+                            </form>
+                        </td>
+                        
                     </tr>
                     <?php
                 endforeach;
